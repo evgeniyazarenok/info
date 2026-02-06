@@ -13,12 +13,14 @@
             --surface: #161618;
             --text-main: #f4f4f5;
             --text-secondary: #71717a;
-            --accent: #3b82f6;
+            --accent: #3b82f6; /* Electric Blue */
+            --accent-glow: rgba(59, 130, 246, 0.4);
             --border: rgba(255, 255, 255, 0.1);
             --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
         body {
             background-color: var(--bg);
             color: var(--text-main);
@@ -27,39 +29,45 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        .container { width: 100%; max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        .container { width: 100%; max-width: 800px; margin: 0 auto; padding: 0 24px; }
 
         /* HEADER */
-        header.top-bar { padding: 40px 0 20px; }
-        .name-label { font-size: 14px; font-weight: 500; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; }
+        header.top-bar { padding: 48px 0 20px; }
+        .name-label { 
+            font-size: 14px; 
+            font-weight: 500; 
+            color: var(--text-secondary); 
+            text-transform: uppercase; 
+            letter-spacing: 0.2em; 
+        }
 
         /* HERO */
         .hero { padding-bottom: 30px; }
-        #roleTitle { font-size: 38px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; line-height: 1.1; }
+        #roleTitle { font-size: 38px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; line-height: 1.1; color: #fff; }
         #positioning { font-size: 18px; color: var(--text-secondary); font-weight: 300; max-width: 600px; }
 
-        /* NAV: STICKY */
+        /* NAV STICKY */
         .nav-wrapper {
             position: -webkit-sticky;
             position: sticky;
             top: 0;
-            background: rgba(10, 10, 11, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(10, 10, 11, 0.9);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             z-index: 1000;
-            margin: 0 -20px 40px;
-            padding: 15px 20px;
+            margin: 0 -24px 40px;
+            padding: 16px 24px;
             border-bottom: 1px solid var(--border);
         }
 
-        .role-selector { display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; }
+        .role-selector { display: flex; gap: 12px; overflow-x: auto; scrollbar-width: none; padding: 4px 0; }
         .role-selector::-webkit-scrollbar { display: none; }
 
         .role-btn {
             background: var(--surface);
             border: 1px solid var(--border);
             color: var(--text-secondary);
-            padding: 10px 20px;
+            padding: 10px 22px;
             border-radius: 100px;
             font-size: 14px;
             font-weight: 500;
@@ -67,9 +75,21 @@
             cursor: pointer;
             transition: var(--transition);
         }
-        .role-btn.active { background: var(--text-main); color: var(--bg); border-color: var(--text-main); }
+        
+        .role-btn.active { 
+            background: var(--accent); 
+            color: #fff; 
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
 
         /* SECTIONS */
+        #dynamicContent { animation: fadeIn 0.6s ease-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         section { margin-bottom: 60px; }
         .label {
             font-size: 11px;
@@ -82,24 +102,57 @@
         .label::after { content: ""; height: 1px; background: var(--border); flex-grow: 1; }
 
         .grid-list { display: grid; grid-template-columns: 1fr; gap: 12px; }
-        .list-item { background: var(--surface); padding: 16px; border-radius: 12px; font-size: 15px; border: 1px solid var(--border); }
+        .list-item { background: var(--surface); padding: 18px; border-radius: 12px; font-size: 15px; border: 1px solid var(--border); }
 
-        .exp-card { border-left: 1px solid var(--border); padding-left: 20px; margin-bottom: 40px; }
-        .exp-co { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+        .exp-card { border-left: 1px solid var(--border); padding-left: 24px; margin-bottom: 40px; }
+        .exp-co { font-size: 20px; font-weight: 600; margin-bottom: 4px; color: #fff; }
         .exp-date { font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; }
         .exp-role { font-size: 15px; color: var(--accent); font-weight: 500; margin-bottom: 12px; }
         .bullets { list-style: none; }
-        .bullets li { font-size: 15px; color: #a1a1aa; margin-bottom: 8px; padding-left: 18px; position: relative; }
+        .bullets li { font-size: 15px; color: #a1a1aa; margin-bottom: 10px; padding-left: 18px; position: relative; }
         .bullets li::before { content: "•"; position: absolute; left: 0; color: var(--accent); }
-        .res-tag { margin-top: 16px; padding: 12px; background: rgba(59, 130, 246, 0.05); border-radius: 8px; border-left: 2px solid var(--accent); font-size: 14px; }
+        .res-tag { margin-top: 16px; padding: 14px; background: rgba(59, 130, 246, 0.08); border-radius: 8px; border-left: 3px solid var(--accent); font-size: 14px; color: #dbeafe; }
 
         /* FOOTER */
-        footer { padding: 60px 0 120px; text-align: center; }
+        footer { padding: 60px 0 140px; text-align: center; }
         .note-wrap { position: relative; display: inline-block; }
-        .handwritten { font-family: 'Caveat', cursive; font-size: 26px; color: var(--accent); transform: rotate(-3deg); display: inline-block; }
-        .arrow { position: absolute; width: 40px; top: -15px; right: -45px; transform: rotate(15deg); color: var(--accent); }
-        .cta-link { display: inline-block; margin-top: 40px; color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 16px; border: 1px solid var(--border); padding: 15px 30px; border-radius: 100px; transition: var(--transition); }
-        .cta-link:hover { border-color: var(--accent); color: var(--accent); }
+        .handwritten { 
+            font-family: 'Caveat', cursive; 
+            font-size: 28px; 
+            color: var(--accent); 
+            transform: rotate(-3deg); 
+            display: inline-block;
+        }
+        .arrow { position: absolute; width: 44px; top: -15px; right: -50px; transform: rotate(15deg); color: var(--accent); }
+
+        /* TELEGRAM BUTTON */
+        .cta-link { 
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 50px; 
+            color: #fff; 
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 16px; 
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            padding: 18px 36px; 
+            border-radius: 100px; 
+            transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+            animation: pulse-glow 3s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3); transform: scale(1); }
+            50% { box-shadow: 0 10px 40px rgba(59, 130, 246, 0.6); transform: scale(1.02); }
+            100% { box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3); transform: scale(1); }
+        }
+
+        .cta-link:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+        }
 
         @media (min-width: 768px) {
             .grid-list { grid-template-columns: 1fr 1fr; }
@@ -111,10 +164,9 @@
 
     <div class="container">
         <header class="top-bar"><div class="name-label">Евгений Азарёнок</div></header>
-        
         <div class="hero">
-            <h1 id="roleTitle">Head of Growth</h1>
-            <p id="positioning">Масштабирую системы выручки, соединяя маркетинг, продажи и операционку в единую управляемую модель.</p>
+            <h1 id="roleTitle">...</h1>
+            <p id="positioning">Загрузка профиля...</p>
         </div>
     </div>
 
@@ -125,33 +177,34 @@
     </nav>
 
     <div class="container">
-        <section>
-            <div class="label">Компетенции</div>
-            <div class="grid-list" id="skillsGrid"></div>
-        </section>
-
-        <section>
-            <div class="label">Опыт в этой роли</div>
-            <div id="experienceList"></div>
-        </section>
-
-        <section>
-            <div class="label">Типовые задачи</div>
-            <div class="grid-list" id="tasksGrid"></div>
-        </section>
-
-        <section>
-            <div class="label">Ключевая ценность</div>
-            <div id="valueParagraph" style="font-size: 20px; font-weight: 300; font-style: italic; color: #e4e4e7; line-height: 1.6;"></div>
-        </section>
+        <div id="dynamicContent">
+            <section>
+                <div class="label">Компетенции</div>
+                <div class="grid-list" id="skillsGrid"></div>
+            </section>
+            <section>
+                <div class="label">Опыт в этой роли</div>
+                <div id="experienceList"></div>
+            </section>
+            <section>
+                <div class="label">Типовые задачи</div>
+                <div class="grid-list" id="tasksGrid"></div>
+            </section>
+            <section>
+                <div class="label">Ключевая ценность</div>
+                <div id="valueParagraph" style="font-size: 20px; font-weight: 300; font-style: italic; color: #e4e4e7; line-height: 1.6;"></div>
+            </section>
+        </div>
 
         <footer>
             <div class="note-wrap">
                 <div class="handwritten">Другие грани опыта — в меню выше</div>
-                <svg class="arrow" viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 40C20 35 40 25 35 10M35 10L25 15M35 10L40 20" stroke-linecap="round"/></svg>
+                <svg class="arrow" viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 40C20 35 40 25 35 10M35 10L25 15M35 10L40 20" stroke-linecap="round"/></svg>
             </div>
             <br>
-            <a href="https://t.me/azarenokk" class="cta-link">Telegram: @azarenokk</a>
+            <a href="https://t.me/azarenokk" class="cta-link" target="_blank">
+                <span>Обсудить проект в Telegram</span>
+            </a>
         </footer>
     </div>
 
@@ -173,7 +226,7 @@
                 skills: ["Marketing strategy", "Digital & Performance", "Brand + Media", "CRM & Retention"],
                 tasks: ["360 digital поддержка", "Адаптация глобальных стратегий", "Аналитика воронок"],
                 value: "Соединяю креатив и медиа в единый механизм с четким бизнес-результатом.",
-                exp: [{ co: "Dentsu / AdWatch", date: "2013-2019", role: "Marketing Lead", bullets: ["AB InBev EFES, KFC, Aeroflot", "Адаптация глобальных стратегий"], res: "Рост эффективности медиа на 20%+" }]
+                exp: [{ co: "Dentsu / AdWatch", date: "2013-2019", role: "Marketing Lead", bullets: ["AB InBev EFES, KFC, Aeroflot"], res: "Рост эффективности медиа на 20%+" }]
             },
             coo: {
                 label: "COO / Partner",
@@ -191,7 +244,7 @@
                 skills: ["New business", "Tenders", "Partnerships", "Deal structuring"],
                 tasks: ["Выигрыш тендеров 20+ млн", "Разработка продуктов"],
                 value: "Создаю систему, в которой крупные контракты становятся закономерностью.",
-                exp: [{ co: "MDP / BBDO", date: "2021-2025", role: "Head of Development", bullets: ["Тендеры фронтальных агентств"], res: "Диверсификация доходов группы в кризис." }]
+                exp: [{ co: "MDP / BBDO", date: "2021-2025", role: "Head of Development", bullets: ["Тендеры фронтальных агентств"], res: "Диверсификация доходов группы." }]
             },
             crisis: {
                 label: "Crisis Manager",
@@ -200,7 +253,7 @@
                 skills: ["Firefighting", "Rapid decisions", "Resource optimization", "Crisis solving"],
                 tasks: ["Запуски 'на вчера'", "Спасение дедлайнов"],
                 value: "Гарантирую результат в условиях хаоса и острого дефицита ресурсов.",
-                exp: [{ co: "ASAP Projects", date: "2018-2024", role: "Problem Solver", bullets: ["Спецпроекты для Сбера за 2 недели", "Презентации за 12 часов до тендера"], res: "100% проектов сданы в срок." }]
+                exp: [{ co: "ASAP Projects", date: "2018-2024", role: "Problem Solver", bullets: ["Спецпроекты для Сбера за 2 недели"], res: "100% проектов сданы в срок." }]
             },
             consultant: {
                 label: "Consultant",
@@ -209,15 +262,21 @@
                 skills: ["Business diagnostics", "Strategic sessions", "Audits", "Executive coaching"],
                 tasks: ["Проведение стратсессий", "Аудит маркетинга и продаж"],
                 value: "Даю собственнику объективный взгляд на бизнес и дорожную карту изменений.",
-                exp: [{ co: "Mavens / Частная практика", date: "2019-н.в.", role: "Consultant", bullets: ["Диагностика оргструктуры", "GTM-стратегии для девелоперов"], res: "Кратный рост продаж после внедрения изменений." }]
+                exp: [{ co: "Mavens / Частная практика", date: "2019-н.в.", role: "Consultant", bullets: ["Диагностика оргструктуры"], res: "Кратный рост продаж." }]
             }
         };
 
         function switchRole(key, btn) {
             const data = DATA[key];
+            
+            // 1. Скролл наверх (принудительный и моментальный для UX)
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // 2. Обновление кнопок
             document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
             if(btn) btn.classList.add('active');
 
+            // 3. Обновление контента
             document.getElementById('roleTitle').textContent = data.title;
             document.getElementById('positioning').textContent = data.pos;
             document.getElementById('valueParagraph').textContent = data.value;
@@ -232,10 +291,9 @@
                     <div class="res-tag">${e.res}</div>
                 </div>
             `).join('');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Инициализация меню
+        // Инициализация
         const selector = document.getElementById('roleSelector');
         Object.keys(DATA).forEach((key, index) => {
             const btn = document.createElement('button');
@@ -248,7 +306,7 @@
             selector.appendChild(btn);
         });
         
-        // Загружаем первую роль при старте
+        // Стартовая роль
         switchRole('growth');
     </script>
 </body>
