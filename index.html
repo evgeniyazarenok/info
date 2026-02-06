@@ -13,8 +13,8 @@
             --surface: #161618;
             --text-main: #f4f4f5;
             --text-secondary: #71717a;
-            --accent: #3b82f6; /* Electric Blue */
-            --accent-glow: rgba(59, 130, 246, 0.4);
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.6);
             --border: rgba(255, 255, 255, 0.1);
             --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -27,6 +27,7 @@
             font-family: 'Inter', sans-serif;
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
         .container { width: 100%; max-width: 800px; margin: 0 auto; padding: 0 24px; }
@@ -48,7 +49,7 @@
             position: -webkit-sticky;
             position: sticky;
             top: 0;
-            background: rgba(10, 10, 11, 0.9);
+            background: rgba(10, 10, 11, 0.95);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             z-index: 1000;
@@ -57,7 +58,7 @@
             border-bottom: 1px solid var(--border);
         }
 
-        .role-selector { display: flex; gap: 12px; overflow-x: auto; scrollbar-width: none; padding: 4px 0; }
+        .role-selector { display: flex; gap: 12px; overflow-x: auto; scrollbar-width: none; padding: 8px 0; }
         .role-selector::-webkit-scrollbar { display: none; }
 
         .role-btn {
@@ -71,13 +72,16 @@
             white-space: nowrap;
             cursor: pointer;
             transition: var(--transition);
+            position: relative;
         }
         
+        /* Постоянное свечение для активной кнопки */
         .role-btn.active { 
             background: var(--accent); 
             color: #fff; 
             border-color: var(--accent);
-            box-shadow: 0 0 20px var(--accent-glow);
+            box-shadow: 0 0 25px var(--accent-glow), 0 0 10px rgba(59, 130, 246, 0.4);
+            transform: scale(1.02);
         }
 
         #dynamicContent { animation: fadeIn 0.6s ease-out; }
@@ -109,10 +113,33 @@
         .bullets li::before { content: "•"; position: absolute; left: 0; color: var(--accent); }
         .res-tag { margin-top: 16px; padding: 14px; background: rgba(59, 130, 246, 0.08); border-radius: 8px; border-left: 3px solid var(--accent); font-size: 14px; color: #dbeafe; }
 
-        footer { padding: 60px 0 140px; text-align: center; }
-        .note-wrap { position: relative; display: inline-block; }
-        .handwritten { font-family: 'Caveat', cursive; font-size: 28px; color: var(--accent); transform: rotate(-3deg); display: inline-block; }
-        .arrow { position: absolute; width: 44px; top: -15px; right: -50px; transform: rotate(15deg); color: var(--accent); }
+        /* FOOTER */
+        footer { padding: 60px 0 140px; text-align: center; overflow: hidden; }
+        
+        .note-wrap { 
+            position: relative; 
+            display: inline-block; 
+            max-width: 100%;
+            padding: 0 40px; /* Запас под стрелку внутри */
+        }
+        
+        .handwritten { 
+            font-family: 'Caveat', cursive; 
+            font-size: 26px; 
+            color: var(--accent); 
+            transform: rotate(-2deg); 
+            display: inline-block;
+            line-height: 1.2;
+        }
+        
+        .arrow { 
+            position: absolute; 
+            width: 38px; 
+            top: -12px; 
+            right: 0px; 
+            transform: rotate(10deg); 
+            color: var(--accent); 
+        }
 
         .cta-link { 
             display: inline-flex;
@@ -140,6 +167,7 @@
         @media (min-width: 768px) {
             .grid-list { grid-template-columns: 1fr 1fr; }
             #roleTitle { font-size: 52px; }
+            .handwritten { font-size: 32px; }
         }
     </style>
 </head>
@@ -181,12 +209,12 @@
 
         <footer>
             <div class="note-wrap">
-                <div class="handwritten">Другие грани опыта — в меню выше</div>
+                <div class="handwritten">Другие грани опыта&nbsp;— в&nbsp;меню выше</div>
                 <svg class="arrow" viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 40C20 35 40 25 35 10M35 10L25 15M35 10L40 20" stroke-linecap="round"/></svg>
             </div>
             <br>
             <a href="https://t.me/azarenokk" class="cta-link" target="_blank">
-                <span>Обсудить проект в Telegram</span>
+                <span>Обсудить проект в&nbsp;Telegram</span>
             </a>
         </footer>
     </div>
@@ -195,77 +223,82 @@
         const DATA = {
             growth: {
                 label: "Growth / CCO",
-                title: "Head of Growth",
-                pos: "Строю и масштабирую системы выручки, соединяя маркетинг, продажи и операционку в единую модель.",
+                title: "Head of&nbsp;Growth",
+                pos: "Строю и&nbsp;масштабирую системы выручки, соединяя маркетинг, продажи и&nbsp;операционку в&nbsp;единую модель.",
                 skills: ["Revenue architecture", "Growth strategy", "Масштабирование команд", "Go-To-Market", "P&L логика"],
-                tasks: ["Перевод продаж в конвейер", "Прогнозирование выручки", "Масштабирование каналов"],
-                value: "Каждый блок процессов - как управляемый драйвер роста прибыли.",
-                exp: [{ co: "MDP (ex BBDO)", date: "2021-2025", role: "Head of Growth", bullets: ["Масштабировал Новый бизнес в Отдел развития","Перевёл отдел в revenue-конвейер"], res: "Сохранение выручки группы в кризис." }]
+                tasks: ["Перевод продаж в&nbsp;конвейер", "Прогнозирование выручки", "Масштабирование каналов"],
+                value: "Каждый блок процессов&nbsp;— как управляемый драйвер роста прибыли.",
+                exp: [{ co: "MDP (ex&nbsp;BBDO)", date: "2021-2025", role: "Head of&nbsp;Growth", bullets: ["Масштабировал Новый бизнес в&nbsp;Отдел развития","Перевёл отдел в&nbsp;revenue-конвейер"], res: "Сохранение выручки группы в&nbsp;кризис." }]
             },
             cmo: {
                 label: "CMO",
                 title: "Chief Marketing Officer",
-                pos: "Маркетинговый стратег и практик с международным опытом. Строю экосистемы и решаю задачи для корпораций и ИП.",
+                pos: "Маркетинговый стратег и&nbsp;практик с&nbsp;международным опытом. Строю экосистемы и&nbsp;решаю задачи для корпораций и&nbsp;ИП.",
                 skills: ["Digital & Offline", "Brand & Media", "Awareness & Performance", "CRM & Retention"],
-                tasks: ["Клиентский сервис", "Стратегическое и тактическое планирование + практика", "Сквозная аналитика"],
-                value: "Строю прозрачный и эффективный маркетинг, который одинаково хорошо работает как на имидж, так и на продажи.",
+                tasks: ["Клиентский сервис", "Стратегическое и&nbsp;тактическое планирование&nbsp;+ практика", "Сквозная аналитика"],
+                value: "Строю прозрачный и&nbsp;эффективный маркетинг, который одинаково хорошо работает как на&nbsp;имидж, так и&nbsp;на&nbsp;продажи.",
                 exp: [
-                    { co: "Dentsu / AdWatch", date: "2013-2019", role: "Account Group Head", bullets: ["360 поддержка: Phillip Morris, Ростелеком, AB InBev EFES, KFC, Aeroflot", "Управление digital-стратегиями и медиабаингом", "Адаптация глобальных стратегий под локальный рынок"], res: "Рост эффективности медиа на 20%+" },
-                    { co: "MDP (ex BBDO Group)", date: "2021-2025", role: "Strategist", bullets: ["Разработка маркетинговых стратегий для текущих клиентов группы", "Контроль качества реализации performance-кампаний", "Работа с девелопментом, FMCG, авто и банками"], res: "Удержание и развитие ключевого клиентского портфеля." },
-                    { co: "Частная практика", date: "2019-н.в.", role: "Fractional CMO / Lead Strategist", bullets: ["Ведение прямых клиентов (малый и средний бизнес)", "Упаковка продуктов и настройка воронок продаж", "Сокращение стоимости лида и масштабирование трафика"], res: "Кратный рост продаж за счет прозрачности процессов." },
-                    { co: "Adventum, Digital Guru, SVAMedia", date: "2010-2016", role: "Performance & Account Manager", bullets: ["Ведение ключевых клиентов агентств", "Медиапланирование и клиентский сервис", "Внедрение CRM и автоматизация отчетности"], res: "Масштабирование клиентского сервиса на ранних этапах." }
+                    { co: "Dentsu / AdWatch", date: "2013-2019", role: "Account Group Head", bullets: ["360 поддержка: Phillip Morris, Ростелеком, AB&nbsp;InBev EFES, KFC, Aeroflot", "Управление digital-стратегиями и&nbsp;медиабаингом", "Адаптация глобальных стратегий под локальный рынок"], res: "Рост эффективности медиа на&nbsp;20%+" },
+                    { co: "MDP (ex&nbsp;BBDO Group)", date: "2021-2025", role: "Strategist", bullets: ["Разработка маркетинговых стратегий для текущих клиентов группы", "Контроль качества реализации performance-кампаний", "Работа с&nbsp;девелопментом, FMCG, авто и&nbsp;банками"], res: "Удержание и&nbsp;развитие ключевого клиентского портфеля." },
+                    { co: "Частная практика", date: "2019-н.в.", role: "Fractional CMO / Lead Strategist", bullets: ["Ведение прямых клиентов (малый и&nbsp;средний бизнес)", "Упаковка продуктов и&nbsp;настройка воронок продаж", "Сокращение стоимости лида и&nbsp;масштабирование трафика"], res: "Кратный рост продаж за&nbsp;счет прозрачности процессов." },
+                    { co: "Adventum, Digital Guru, SVAMedia", date: "2010-2016", role: "Performance & Account Manager", bullets: ["Ведение ключевых клиентов агентств", "Медиапланирование и&nbsp;клиентский сервис", "Внедрение CRM и&nbsp;автоматизация отчетности"], res: "Масштабирование клиентского сервиса на&nbsp;ранних этапах." }
                 ]
             },
             coo: {
                 label: "COO / Partner",
                 title: "Operating Partner",
-                pos: "Навожу порядок в процессах, командах и регламентах. Убираю хаос.",
+                pos: "Навожу порядок в&nbsp;процессах, командах и&nbsp;регламентах. Убираю хаос.",
                 skills: ["Process design", "Org structure", "KPI systems", "Crisis management"],
                 tasks: ["Устранение выгорания", "Оптимизация структуры", "Внедрение регламентов"],
-                value: "Делаю бизнес прозрачным и предсказуемым для собственника.",
+                value: "Делаю бизнес прозрачным и&nbsp;предсказуемым для собственника.",
                 exp: [
-                    { co: "MDP / BBDO", date: "2021-2025", role: "Development Head", bullets: ["Потушил пожар входящих задач", "Внедрил регламенты"], res: "Снижение хаоса и рост качества продукта." },
-                    { co: "Частная практика", date: "2019-н.в.", role: "Process fixer", bullets: ["Консультации и практика архитектуры процессов", "Реструкторизация команд", "Оптимизация операционки"], res: "Оптимизация ресурсов, фокус на ключевом." }
+                    { co: "MDP / BBDO", date: "2021-2025", role: "Development Head", bullets: ["Потушил пожар входящих задач", "Внедрил регламенты"], res: "Снижение хаоса и&nbsp;рост качества продукта." },
+                    { co: "Частная практика", date: "2019-н.в.", role: "Process fixer", bullets: ["Консультации и&nbsp;практика архитектуры процессов", "Реструктуризация команд", "Оптимизация операционки"], res: "Оптимизация ресурсов, фокус на&nbsp;ключевом." }
                 ]
             },
             bizdev: {
                 label: "BizDev",
-                title: "Head of BizDev",
-                pos: "Системно привлекаю крупных клиентов и строю стратегические партнерства.",
+                title: "Head of&nbsp;BizDev",
+                pos: "Системно привлекаю крупных клиентов и&nbsp;строю стратегические партнерства.",
                 skills: ["New business", "Tenders", "Partnerships", "Deal structuring"],
                 tasks: ["Выигрыш тендеров 20+ млн", "Разработка продуктов"],
-                value: "Создаю систему, в которой крупные контракты становятся закономерностью.",
-                exp: [{ co: "MDP / ex-BBDO", date: "2021-2025", role: "Head of Development", bullets: ["Тендеры фронтальных агентств"], res: "Диверсификация доходов группы." }]
+                value: "Создаю систему, в&nbsp;которой крупные контракты становятся закономерностью.",
+                exp: [{ co: "MDP / ex-BBDO", date: "2021-2025", role: "Head of&nbsp;Development", bullets: ["Тендеры фронтальных агентств"], res: "Диверсификация доходов группы." }]
             },
             crisis: {
                 label: "Crisis Manager",
                 title: "Crisis / ASAP Manager",
-                pos: "Решаю критические задачи, когда времени нет, а результат нужен завтра.",
+                pos: "Решаю критические задачи, когда времени нет, а&nbsp;результат нужен завтра.",
                 skills: ["Firefighting", "Rapid decisions", "Resource optimization", "Crisis solving"],
-                tasks: ["Запуски 'на вчера'", "Спасение дедлайнов"],
-                value: "Гарантирую результат в условиях хаоса и острого дефицита ресурсов.",
-                exp: [{ co: "ASAP Projects", date: "2018-2024", role: "Problem Solver", bullets: ["Спецпроекты для Сбера за 2 недели"], res: "Отсутствие нерешаемых задач." }]
+                tasks: ["Запуски 'на&nbsp;вчера'", "Спасение дедлайнов"],
+                value: "Гарантирую результат в&nbsp;условиях хаоса и&nbsp;острого дефицита ресурсов.",
+                exp: [{ co: "ASAP Projects", date: "2018-2024", role: "Problem Solver", bullets: ["Спецпроекты для Сбера за&nbsp;2 недели"], res: "Отсутствие нерешаемых задач." }]
             },
             consultant: {
                 label: "Consultant",
                 title: "Strategic Consultant",
-                pos: "Внешний эксперт для глубокой диагностики и трансформации бизнеса.",
+                pos: "Внешний эксперт для глубокой диагностики и&nbsp;трансформации бизнеса.",
                 skills: ["Business diagnostics", "Strategic sessions", "Audits", "Executive coaching"],
-                tasks: ["Проведение стратсессий", "Аудит маркетинга и продаж"],
-                value: "Даю собственнику объективный взгляд на бизнес и дорожную карту изменений.",
+                tasks: ["Проведение стратсессий", "Аудит маркетинга и&nbsp;продаж"],
+                value: "Даю собственнику объективный взгляд на&nbsp;бизнес и&nbsp;дорожную карту изменений.",
                 exp: [{ co: "Mavens / Частная практика", date: "2019-н.в.", role: "Consultant", bullets: ["Диагностика оргструктуры"], res: "Кратный рост продаж." }]
             }
         };
 
         function switchRole(key, btn) {
             const data = DATA[key];
+            
+            // Скролл наверх
             window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Обновление кнопок
             document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
             if(btn) btn.classList.add('active');
 
-            document.getElementById('roleTitle').textContent = data.title;
-            document.getElementById('positioning').textContent = data.pos;
-            document.getElementById('valueParagraph').textContent = data.value;
+            // Обновление контента
+            document.getElementById('roleTitle').innerHTML = data.title;
+            document.getElementById('positioning').innerHTML = data.pos;
+            document.getElementById('valueParagraph').innerHTML = data.value;
             document.getElementById('skillsGrid').innerHTML = data.skills.map(s => `<div class="list-item">${s}</div>`).join('');
             document.getElementById('tasksGrid').innerHTML = data.tasks.map(t => `<div class="list-item">${t}</div>`).join('');
             document.getElementById('experienceList').innerHTML = data.exp.map(e => `
@@ -291,6 +324,7 @@
             selector.appendChild(btn);
         });
         
+        // Стартовая роль
         switchRole('growth');
     </script>
 </body>
