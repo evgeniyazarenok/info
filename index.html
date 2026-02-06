@@ -31,7 +31,6 @@
 
         .container { width: 100%; max-width: 800px; margin: 0 auto; padding: 0 24px; }
 
-        /* HEADER */
         header.top-bar { padding: 48px 0 20px; }
         .name-label { 
             font-size: 14px; 
@@ -41,12 +40,10 @@
             letter-spacing: 0.2em; 
         }
 
-        /* HERO */
         .hero { padding-bottom: 30px; }
         #roleTitle { font-size: 38px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; line-height: 1.1; color: #fff; }
-        #positioning { font-size: 18px; color: var(--text-secondary); font-weight: 300; max-width: 600px; }
+        #positioning { font-size: 18px; color: var(--text-secondary); font-weight: 300; max-width: 650px; }
 
-        /* NAV STICKY */
         .nav-wrapper {
             position: -webkit-sticky;
             position: sticky;
@@ -83,7 +80,6 @@
             box-shadow: 0 0 20px var(--accent-glow);
         }
 
-        /* SECTIONS */
         #dynamicContent { animation: fadeIn 0.6s ease-out; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -113,19 +109,11 @@
         .bullets li::before { content: "•"; position: absolute; left: 0; color: var(--accent); }
         .res-tag { margin-top: 16px; padding: 14px; background: rgba(59, 130, 246, 0.08); border-radius: 8px; border-left: 3px solid var(--accent); font-size: 14px; color: #dbeafe; }
 
-        /* FOOTER */
         footer { padding: 60px 0 140px; text-align: center; }
         .note-wrap { position: relative; display: inline-block; }
-        .handwritten { 
-            font-family: 'Caveat', cursive; 
-            font-size: 28px; 
-            color: var(--accent); 
-            transform: rotate(-3deg); 
-            display: inline-block;
-        }
+        .handwritten { font-family: 'Caveat', cursive; font-size: 28px; color: var(--accent); transform: rotate(-3deg); display: inline-block; }
         .arrow { position: absolute; width: 44px; top: -15px; right: -50px; transform: rotate(15deg); color: var(--accent); }
 
-        /* TELEGRAM BUTTON */
         .cta-link { 
             display: inline-flex;
             align-items: center;
@@ -147,11 +135,6 @@
             0% { box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3); transform: scale(1); }
             50% { box-shadow: 0 10px 40px rgba(59, 130, 246, 0.6); transform: scale(1.02); }
             100% { box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3); transform: scale(1); }
-        }
-
-        .cta-link:hover {
-            transform: translateY(-3px);
-            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
         }
 
         @media (min-width: 768px) {
@@ -222,11 +205,16 @@
             cmo: {
                 label: "CMO",
                 title: "Chief Marketing Officer",
-                pos: "Стратег маркетинга с международным опытом. Строю экосистемы под рост бизнеса.",
-                skills: ["Marketing strategy", "Digital & Performance", "Brand + Media", "CRM & Retention"],
-                tasks: ["360 digital поддержка", "Адаптация глобальных стратегий", "Аналитика воронок"],
-                value: "Соединяю креатив и медиа в единый механизм с четким бизнес-результатом.",
-                exp: [{ co: "Dentsu / AdWatch", date: "2013-2019", role: "Marketing Lead", bullets: ["AB InBev EFES, KFC, Aeroflot"], res: "Рост эффективности медиа на 20%+" }]
+                pos: "Маркетинговый стратег и практик с международным опытом. Строю экосистемы и решаю задачи для корпораций и ип.",
+                skills: ["Digital & Offline", "Brand & Media", "Awareness & Performance", "CRM & Retention"],
+                tasks: ["Клиентский сервис", "Стратегическое и тактическое планирование", "Сквозная аналитика"],
+                value: "Строю прозрачный и эффективный маркетинг, который одинаково хорошо работает как на имидж, так и на продажи.",
+                exp: [
+                    { co: "Dentsu / AdWatch", date: "2013-2019", role: "Account Group Head", bullets: ["360 поддержка: AB InBev EFES, KFC, Aeroflot", "Управление digital-стратегиями и медиабаингом", "Адаптация глобальных стратегий под локальный рынок"], res: "Рост эффективности медиа на 20%+" },
+                    { co: "MDP (ex BBDO Group)", date: "2021-2025", role: "Account Director (Current Clients)", bullets: ["Разработка маркетинговых стратегий для текущих клиентов группы", "Контроль качества реализации performance-кампаний", "Работа с девелопментом, FMCG, авто и банками"], res: "Удержание и развитие ключевого клиентского портфеля." },
+                    { co: "Частная практика", date: "2019-н.в.", role: "Fractional CMO / Lead Strategist", bullets: ["Ведение прямых клиентов (малый и средний бизнес)", "Упаковка продуктов и настройка воронок продаж", "Сокращение стоимости лида и масштабирование трафика"], res: "Кратный рост продаж за счет прозрачности процессов." },
+                    { co: "Adventum, Digital Guru, SVAMedia", date: "2010-2016", role: "Performance & Account Manager", bullets: ["Ведение ключевых клиентов агентств", "Медиапланирование и клиентский сервис", "Внедрение CRM и автоматизация отчетности"], res: "Масштабирование клиентского сервиса на ранних этапах." }
+                ]
             },
             coo: {
                 label: "COO / Partner",
@@ -268,15 +256,10 @@
 
         function switchRole(key, btn) {
             const data = DATA[key];
-            
-            // 1. Скролл наверх (принудительный и моментальный для UX)
             window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            // 2. Обновление кнопок
             document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
             if(btn) btn.classList.add('active');
 
-            // 3. Обновление контента
             document.getElementById('roleTitle').textContent = data.title;
             document.getElementById('positioning').textContent = data.pos;
             document.getElementById('valueParagraph').textContent = data.value;
@@ -293,7 +276,6 @@
             `).join('');
         }
 
-        // Инициализация
         const selector = document.getElementById('roleSelector');
         Object.keys(DATA).forEach((key, index) => {
             const btn = document.createElement('button');
@@ -306,7 +288,6 @@
             selector.appendChild(btn);
         });
         
-        // Стартовая роль
         switchRole('growth');
     </script>
 </body>
