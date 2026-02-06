@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Евгений Азарёнок — Executive Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0b;
+            --surface: #161618;
+            --text-main: #f4f4f5;
+            --text-secondary: #71717a;
+            --accent: #3b82f6;
+            --border: rgba(255, 255, 255, 0.1);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { width: 100%; max-width: 800px; margin: 0 auto; padding: 0 20px; }
+
+        /* HEADER */
+        header.top-bar { padding: 40px 0 20px; }
+        .name-label { font-size: 14px; font-weight: 500; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; }
+
+        /* HERO */
+        .hero { padding-bottom: 30px; }
+        #roleTitle { font-size: 38px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; line-height: 1.1; }
+        #positioning { font-size: 18px; color: var(--text-secondary); font-weight: 300; max-width: 600px; }
+
+        /* NAV: STICKY */
+        .nav-wrapper {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            background: rgba(10, 10, 11, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            margin: 0 -20px 40px;
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .role-selector { display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; }
+        .role-selector::-webkit-scrollbar { display: none; }
+
+        .role-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 10px 20px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .role-btn.active { background: var(--text-main); color: var(--bg); border-color: var(--text-main); }
+
+        /* SECTIONS */
+        section { margin-bottom: 60px; }
+        .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            letter-spacing: 0.15em;
+            margin-bottom: 24px;
+            display: flex; align-items: center; gap: 12px;
+        }
+        .label::after { content: ""; height: 1px; background: var(--border); flex-grow: 1; }
+
+        .grid-list { display: grid; grid-template-columns: 1fr; gap: 12px; }
+        .list-item { background: var(--surface); padding: 16px; border-radius: 12px; font-size: 15px; border: 1px solid var(--border); }
+
+        .exp-card { border-left: 1px solid var(--border); padding-left: 20px; margin-bottom: 40px; }
+        .exp-co { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+        .exp-date { font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; }
+        .exp-role { font-size: 15px; color: var(--accent); font-weight: 500; margin-bottom: 12px; }
+        .bullets { list-style: none; }
+        .bullets li { font-size: 15px; color: #a1a1aa; margin-bottom: 8px; padding-left: 18px; position: relative; }
+        .bullets li::before { content: "•"; position: absolute; left: 0; color: var(--accent); }
+        .res-tag { margin-top: 16px; padding: 12px; background: rgba(59, 130, 246, 0.05); border-radius: 8px; border-left: 2px solid var(--accent); font-size: 14px; }
+
+        /* FOOTER */
+        footer { padding: 60px 0 120px; text-align: center; }
+        .note-wrap { position: relative; display: inline-block; }
+        .handwritten { font-family: 'Caveat', cursive; font-size: 26px; color: var(--accent); transform: rotate(-3deg); display: inline-block; }
+        .arrow { position: absolute; width: 40px; top: -15px; right: -45px; transform: rotate(15deg); color: var(--accent); }
+        .cta-link { display: inline-block; margin-top: 40px; color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 16px; border: 1px solid var(--border); padding: 15px 30px; border-radius: 100px; transition: var(--transition); }
+        .cta-link:hover { border-color: var(--accent); color: var(--accent); }
+
+        @media (min-width: 768px) {
+            .grid-list { grid-template-columns: 1fr 1fr; }
+            #roleTitle { font-size: 52px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="top-bar"><div class="name-label">Евгений Азарёнок</div></header>
+        
+        <div class="hero">
+            <h1 id="roleTitle">Head of Growth</h1>
+            <p id="positioning">Масштабирую системы выручки, соединяя маркетинг, продажи и операционку в единую управляемую модель.</p>
+        </div>
+    </div>
+
+    <nav class="nav-wrapper">
+        <div class="container">
+            <div class="role-selector" id="roleSelector"></div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section>
+            <div class="label">Компетенции</div>
+            <div class="grid-list" id="skillsGrid"></div>
+        </section>
+
+        <section>
+            <div class="label">Опыт в этой роли</div>
+            <div id="experienceList"></div>
+        </section>
+
+        <section>
+            <div class="label">Типовые задачи</div>
+            <div class="grid-list" id="tasksGrid"></div>
+        </section>
+
+        <section>
+            <div class="label">Ключевая ценность</div>
+            <div id="valueParagraph" style="font-size: 20px; font-weight: 300; font-style: italic; color: #e4e4e7; line-height: 1.6;"></div>
+        </section>
+
+        <footer>
+            <div class="note-wrap">
+                <div class="handwritten">Другие грани опыта — в меню выше</div>
+                <svg class="arrow" viewBox="0 0 50 50" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 40C20 35 40 25 35 10M35 10L25 15M35 10L40 20" stroke-linecap="round"/></svg>
+            </div>
+            <br>
+            <a href="https://t.me/azarenokk" class="cta-link">Telegram: @azarenokk</a>
+        </footer>
+    </div>
+
+    <script>
+        const DATA = {
+            growth: {
+                label: "Growth / CCO",
+                title: "Head of Growth",
+                pos: "Строю и масштабирую системы выручки, соединяя маркетинг, продажи и операционку в единую модель.",
+                skills: ["Revenue architecture", "Growth strategy", "Масштабирование команд", "Go-To-Market", "P&L логика"],
+                tasks: ["Перевод продаж в конвейер", "Прогнозирование выручки", "Масштабирование каналов"],
+                value: "Превращаю маркетинг из центра затрат в управляемый драйвер роста прибыли.",
+                exp: [{ co: "MDP (ex BBDO)", date: "2021-2025", role: "Head of Growth", bullets: ["Перевёл отдел в revenue-конвейер", "Закрывал сделки 20+ млн ₽"], res: "Сохранение выручки группы в кризис." }]
+            },
+            cmo: {
+                label: "CMO",
+                title: "Chief Marketing Officer",
+                pos: "Стратег маркетинга с международным опытом. Строю экосистемы под рост бизнеса.",
+                skills: ["Marketing strategy", "Digital & Performance", "Brand + Media", "CRM & Retention"],
+                tasks: ["360 digital поддержка", "Адаптация глобальных стратегий", "Аналитика воронок"],
+                value: "Соединяю креатив и медиа в единый механизм с четким бизнес-результатом.",
+                exp: [{ co: "Dentsu / AdWatch", date: "2013-2019", role: "Marketing Lead", bullets: ["AB InBev EFES, KFC, Aeroflot", "Адаптация глобальных стратегий"], res: "Рост эффективности медиа на 20%+" }]
+            },
+            coo: {
+                label: "COO / Partner",
+                title: "Operating Partner",
+                pos: "Навожу порядок в процессах, командах и регламентах. Убираю хаос.",
+                skills: ["Process design", "Org structure", "KPI systems", "Crisis management"],
+                tasks: ["Устранение выгорания", "Оптимизация структуры", "Внедрение регламентов"],
+                value: "Делаю бизнес прозрачным и предсказуемым для собственника.",
+                exp: [{ co: "MDP / BBDO", date: "2021-2025", role: "Development Head", bullets: ["Потушил пожар входящих задач", "Внедрил регламенты"], res: "Снижение хаоса и рост качества продукта." }]
+            },
+            bizdev: {
+                label: "BizDev",
+                title: "Head of BizDev",
+                pos: "Системно привлекаю крупных клиентов и строю стратегические партнерства.",
+                skills: ["New business", "Tenders", "Partnerships", "Deal structuring"],
+                tasks: ["Выигрыш тендеров 20+ млн", "Разработка продуктов"],
+                value: "Создаю систему, в которой крупные контракты становятся закономерностью.",
+                exp: [{ co: "MDP / BBDO", date: "2021-2025", role: "Head of Development", bullets: ["Тендеры фронтальных агентств"], res: "Диверсификация доходов группы в кризис." }]
+            },
+            crisis: {
+                label: "Crisis Manager",
+                title: "Crisis / ASAP Manager",
+                pos: "Решаю критические задачи, когда времени нет, а результат нужен завтра.",
+                skills: ["Firefighting", "Rapid decisions", "Resource optimization", "Crisis solving"],
+                tasks: ["Запуски 'на вчера'", "Спасение дедлайнов"],
+                value: "Гарантирую результат в условиях хаоса и острого дефицита ресурсов.",
+                exp: [{ co: "ASAP Projects", date: "2018-2024", role: "Problem Solver", bullets: ["Спецпроекты для Сбера за 2 недели", "Презентации за 12 часов до тендера"], res: "100% проектов сданы в срок." }]
+            },
+            consultant: {
+                label: "Consultant",
+                title: "Strategic Consultant",
+                pos: "Внешний эксперт для глубокой диагностики и трансформации бизнеса.",
+                skills: ["Business diagnostics", "Strategic sessions", "Audits", "Executive coaching"],
+                tasks: ["Проведение стратсессий", "Аудит маркетинга и продаж"],
+                value: "Даю собственнику объективный взгляд на бизнес и дорожную карту изменений.",
+                exp: [{ co: "Mavens / Частная практика", date: "2019-н.в.", role: "Consultant", bullets: ["Диагностика оргструктуры", "GTM-стратегии для девелоперов"], res: "Кратный рост продаж после внедрения изменений." }]
+            }
+        };
+
+        function switchRole(key, btn) {
+            const data = DATA[key];
+            document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
+            if(btn) btn.classList.add('active');
+
+            document.getElementById('roleTitle').textContent = data.title;
+            document.getElementById('positioning').textContent = data.pos;
+            document.getElementById('valueParagraph').textContent = data.value;
+            document.getElementById('skillsGrid').innerHTML = data.skills.map(s => `<div class="list-item">${s}</div>`).join('');
+            document.getElementById('tasksGrid').innerHTML = data.tasks.map(t => `<div class="list-item">${t}</div>`).join('');
+            document.getElementById('experienceList').innerHTML = data.exp.map(e => `
+                <div class="exp-card">
+                    <div class="exp-date">${e.date}</div>
+                    <div class="exp-co">${e.co}</div>
+                    <div class="exp-role">${e.role}</div>
+                    <ul class="bullets">${e.bullets.map(b => `<li>${b}</li>`).join('')}</ul>
+                    <div class="res-tag">${e.res}</div>
+                </div>
+            `).join('');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Инициализация меню
+        const selector = document.getElementById('roleSelector');
+        Object.keys(DATA).forEach((key, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'role-btn' + (index === 0 ? ' active' : '');
+            btn.textContent = DATA[key].label;
+            btn.onclick = () => {
+                switchRole(key, btn);
+                btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            };
+            selector.appendChild(btn);
+        });
+        
+        // Загружаем первую роль при старте
+        switchRole('growth');
+    </script>
+</body>
+</html>
